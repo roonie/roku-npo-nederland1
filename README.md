@@ -2,15 +2,16 @@
 
 This idea behind this app is to get the full range of the NPO streams to work on the roku.
 
-Installation
+Installation:
 Get dev mode running on your roku
-* <Home> 3x
-* <Up> 2x
-* <Right>
-* <Left>
-* <Right>
-* <Left>
-* <Right>
+Use your roku remote
+* Home 3x
+* Up 2x
+* Right
+* Left
+* Right
+* Left
+* Right
 
 Zip the folder
 

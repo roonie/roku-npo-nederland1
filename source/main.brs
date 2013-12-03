@@ -67,8 +67,15 @@ Sub Setup() As Object
     this.player.SetLoop(true)
     this.player.SetPositionNotificationPeriod(1)
     this.player.SetDestinationRect(this.layout.left)
+
+    jsonRequest = CreateObject("roUrlTransfer")
+    jsonRequest.SetURL("http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/tvlive/ned1/ned1.isml/ned1.m3u8")
+    response = ParseJson(jsonRequest.GetToString())
+
+    streamURL = response.stream
+
     this.player.SetContentList([{
-        Stream: { url: "http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8" }
+        Stream: { url: streamURL }
         StreamFormat: "hls"
         SwitchingStrategy: "full-adaptation"
     }])

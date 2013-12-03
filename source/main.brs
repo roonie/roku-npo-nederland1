@@ -1,8 +1,8 @@
 ' ********************************************************************
 ' ********************************************************************
-' **  Roku Custom Video Player Channel (BrightScript)
+' **  Roku NPO Nederland 1 Channel (BrightScript)
 ' **
-' **  May 2010
+' **  Dec 2013
 ' **  Copyright (c) 2010 Roku Inc. All Rights Reserved.
 ' ********************************************************************
 ' ********************************************************************
@@ -28,11 +28,12 @@ Sub Setup() As Object
     }
 
     'Static help text:
-    this.help = "Nederland 1 is the first national television station in the Netherlands. A wide range of broadcasting organisations of the Publieke Omroep deliver programs."
+    this.help = ""
 
     'Register available fonts:
-    this.fonts.Register("pkg:/fonts/caps.otf")
+    this.fonts.Register("pkg:/fonts/hnr.otf")
     this.textcolor = "#fff"
+    this.alttextcolor = "#FF6D00"
 
     'Setup image canvas:
     this.canvas.SetMessagePort(this.port)
@@ -45,22 +46,20 @@ Sub Setup() As Object
         this.layout = {
             full:   this.canvas.GetCanvasRect()
             top:    { x:   0, y:   0, w:1280, h: 130 }
-            left:   { x: 150, y: 247, w: 622, h: 350 }
-            right:  { x: 800, y: 277, w: 350, h: 291 }
-            bottom: { x: 249, y: 600, w: 780, h: 100 }
+            left:   { x: 150, y: 197, w: 622, h: 350 }
+            right:  { x: 800, y: 227, w: 350, h: 291 }
+            bottom: { x: 249, y: 630, w: 780, h: 100 }
         }
         this.background = "pkg:/images/back-hd.jpg"
-        this.headerfont = this.fonts.get("lmroman10 caps", 50, 50, false)
     else
         this.layout = {
             full:   this.canvas.GetCanvasRect()
             top:    { x:   0, y:   0, w: 720, h:  80 }
-            left:   { x: 100, y: 100, w: 280, h: 210 }
+            left:   { x: 90, y: 130, w: 320, h: 211 }
             right:  { x: 400, y: 100, w: 220, h: 210 }
             bottom: { x: 100, y: 340, w: 520, h: 140 }
         }
         this.background = "pkg:/images/back-sd.jpg"
-        this.headerfont = this.fonts.get("lmroman10 caps", 30, 50, false)
     end if
 
     this.player.SetMessagePort(this.port)
@@ -151,14 +150,14 @@ Sub PaintFullscreenCanvas()
     if m.progress < 100
         color = "#000000" 'opaque black
         list.Push({
-            Text: "Loading..." + m.progress.tostr() + "%"
+            Text: "Laden..." + m.progress.tostr() + "%"
             TextAttrs: { font: "huge" }
             TargetRect: m.layout.full
         })
     else if m.paused
         color = "#80000000" 'semi-transparent black
         list.Push({
-            Text: "Paused"
+            Text: "Gepauzeerd"
             TextAttrs: { font: "huge" }
             TargetRect: m.layout.full
         })
@@ -178,11 +177,6 @@ Sub SetupFramedCanvas()
             Url: m.background
             CompositionMode: "Source"
         },
-        { 'The title:
-            Text: "NPO: Nederland 1"
-            TargetRect: m.layout.top
-            TextAttrs: { valign: "center", font: m.headerfont, color: m.textcolor }
-        },
         { 'Help text:
             Text: m.help
             TargetRect: m.layout.right
@@ -195,13 +189,13 @@ End Sub
 
 Sub PaintFramedCanvas()
     list = []
-    if m.progress < 100  'Video is currently buffering
+    if m.progress < 100  'Video is aan het laden...
         list.Push({
             Color: "#80000000"
             TargetRect: m.layout.left
         })
         list.Push({
-            Text: "Loading..." + m.progress.tostr() + "%"
+            Text: "Laden..." + m.progress.tostr() + "%"
             TargetRect: m.layout.left
         })
     else  'Video is currently playing
@@ -212,7 +206,7 @@ Sub PaintFramedCanvas()
                 CompositionMode: "Source"
             })
             list.Push({
-                Text: "Paused"
+                Text: "Gepauzeerd"
                 TargetRect: m.layout.left
             })
         else  'not paused
@@ -223,9 +217,9 @@ Sub PaintFramedCanvas()
             })
         end if
         list.Push({
-            Text: "Press <down> to toggle fullscreen"
+            Text: ""
             TargetRect: m.layout.bottom
-            TextAttrs: { halign: "left", valign: "top", color: m.textcolor }
+            TextAttrs: { halign: "left", valign: "top", color: m.alttextcolor }
         })
     end if
     m.canvas.SetLayer(1, list)

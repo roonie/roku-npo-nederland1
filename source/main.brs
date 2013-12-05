@@ -34,6 +34,8 @@ Sub Setup() As Object
     'Register available fonts:
     this.textcolor = "#fff"
     this.alttextcolor = "#DF2726"
+    this.orange = "#FF6D00"
+    this.gray = "#A2A2A2"
 
     'Setup image canvas:
     this.canvas.SetMessagePort(this.port)
@@ -256,14 +258,64 @@ Sub PaintFramedCanvas()
             })
         end if
         list.Push({
-            Text: "tvgids"
-            TargetRect: m.layout.right
-            TextAttrs: { halign: "left", valign: "center", color: m.textcolor }
+            Text: "Nu"
+            TargetRect: { x: 919, y: 271, w: 50, h: 35 }
+            TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
         })
         list.Push({
-            Text: ""
-            TargetRect: m.layout.bottom
-            TextAttrs: { halign: "left", valign: "top", color: m.alttextcolor }
+            Text: "Lingo (TROS)"
+            TargetRect: { x: 981, y: 271, w: 210, h: 35 }
+            TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
+        })
+        list.Push({
+            Text: "19:27"
+            TargetRect: { x: 919, y: 306, w: 50, h: 35 }
+            TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
+        })
+        list.Push({
+            Text: "Een huis vol (NCRV)"
+            TargetRect: { x: 981, y: 306, w: 210, h: 35 }
+            TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
+        })
+        list.Push({
+            Text: "Nu"
+            TargetRect: { x: 919, y: 366, w: 50, h: 35 }
+            TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
+        })
+        list.Push({
+            Text: "Lingo (TROS)"
+            TargetRect: { x: 981, y: 366, w: 210, h: 35 }
+            TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
+        })
+        list.Push({
+            Text: "19:27"
+            TargetRect: { x: 919, y: 401, w: 50, h: 35 }
+            TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
+        })
+        list.Push({
+            Text: "Een huis vol (NCRV)"
+            TargetRect: { x: 981, y: 401, w: 210, h: 35 }
+            TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
+        })
+        list.Push({
+            Text: "Nu"
+            TargetRect: { x: 919, y: 461, w: 50, h: 35 }
+            TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
+        })
+        list.Push({
+            Text: "Lingo (TROS)"
+            TargetRect: { x: 981, y: 461, w: 210, h: 35 }
+            TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
+        })
+        list.Push({
+            Text: "19:27"
+            TargetRect: { x: 919, y: 496, w: 50, h: 35 }
+            TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
+        })
+        list.Push({
+            Text: "Een huis vol (NCRV)"
+            TargetRect: { x: 981, y: 496, w: 210, h: 35 }
+            TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
         })
     end if
     m.canvas.SetLayer(1, list)

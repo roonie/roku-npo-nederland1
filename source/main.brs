@@ -24,6 +24,7 @@ Sub Setup() As Object
         player:    CreateObject("roVideoPlayer")
         setup:     SetupFramedCanvas
         paint:     PaintFramedCanvas
+        overlay:      false
         eventloop: EventLoop
     }
 
@@ -31,9 +32,8 @@ Sub Setup() As Object
     this.help = ""
 
     'Register available fonts:
-    this.fonts.Register("pkg:/fonts/hnr.otf")
     this.textcolor = "#fff"
-    this.alttextcolor = "#FF6D00"
+    this.alttextcolor = "#DF2726"
 
     'Setup image canvas:
     this.canvas.SetMessagePort(this.port)
@@ -68,7 +68,7 @@ Sub Setup() As Object
     this.player.SetDestinationRect(this.layout.left)
 
     jsonRequest = CreateObject("roUrlTransfer")
-    jsonRequest.SetURL("http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/tvlive/ned1/ned1.isml/ned1.m3u8")
+    jsonRequest.SetURL("http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/tvlive/ned3/ned3.isml/ned3.m3u8")
     response = ParseJson(jsonRequest.GetToString())
 
     streamURL = response.stream
@@ -103,7 +103,7 @@ Sub EventLoop()
             else if msg.isRemoteKeyPressed()
                 index = msg.GetIndex()
                 print "Remote button pressed: " + index.tostr()
-                if index = 2  '<UP>
+                if index = 4 '<left>
                     return
                 else if index = 3 '<DOWN> (toggle fullscreen)
                     if m.paint = PaintFullscreenCanvas
@@ -118,6 +118,13 @@ Sub EventLoop()
                     end if
                     m.setup()
                     m.player.SetDestinationRect(rect)
+                else if index = 2 '<UP>
+                    if m.overlay = true
+                        m.overlay = false
+                    else
+                        m.overlay = true
+                    end if
+                    m.setup()
                 else if index = 13  '<PAUSE/PLAY>
                     if m.paused m.player.Resume() else m.player.Pause()
                 end if
@@ -153,9 +160,35 @@ Sub PaintFullscreenCanvas()
             TextAttrs: { font: "huge" }
             TargetRect: m.layout.full
         })
+    else if m.overlay
+        color = "#00000000" 'transparent black
+        list.Push({
+            url: "pkg:/images/header_overlay.png"
+            TargetRect: { x: 0, y: 0, w: 1280, h: 122 }
+        })
+        list.Push({
+            url: "pkg:/images/logo_channel.png"
+            TargetRect: { x: 26, y: 18, w: 89, h: 89 }
+        })
+        list.Push({
+            Text: "Nu"
+            TextAttrs: { font: "medium", halign: "left", valign: "center", color: m.textcolor }
+            TargetRect: { x: 153, y: 0, w: 50, h: 122 }
+        })
+        list.Push({
+            Text: "NOS Journaal"
+            TextAttrs: { font: "medium", halign: "left", valign: "center", color: m.alttextcolor }
+            TargetRect: { x: 193, y: 0, w: 954, h: 122 }
+        })
+        if m.paused
+            color = "#80000000" 'semi-transparent black
+            list.Push({
+                url: "pkg:/images/pause_icon_large.png"
+                TargetRect: { x: 580, y: 300, w: 120, h: 120 }
+            })
+        end if
     else if m.paused
         color = "#80000000" 'semi-transparent black
-        
         list.Push({
             url: "pkg:/images/pause_icon_large.png"
             TargetRect: { x: 580, y: 300, w: 120, h: 120 }
@@ -167,6 +200,7 @@ Sub PaintFullscreenCanvas()
     m.canvas.SetLayer(0, { Color: color, CompositionMode: "Source" })
     m.canvas.SetLayer(1, list)
 End Sub
+
 
 Sub SetupFramedCanvas()
     m.canvas.AllowUpdates(false)
@@ -208,6 +242,12 @@ Sub PaintFramedCanvas()
                 url: "pkg:/images/pause_icon_small.png"
                 TargetRect: { x: 430, y: 341, w: 61, h: 61 }
             })
+        else if m.overlay
+            list.Push({
+                Color: "#00000000"
+                TargetRect: m.layout.left
+                CompositionMode: "Source"
+            })
         else  'not paused
             list.Push({
                 Color: "#00000000"
@@ -215,6 +255,11 @@ Sub PaintFramedCanvas()
                 CompositionMode: "Source"
             })
         end if
+        list.Push({
+            Text: "tvgids"
+            TargetRect: m.layout.right
+            TextAttrs: { halign: "left", valign: "center", color: m.textcolor }
+        })
         list.Push({
             Text: ""
             TargetRect: m.layout.bottom

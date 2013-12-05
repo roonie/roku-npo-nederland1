@@ -70,7 +70,7 @@ Sub Setup() As Object
     this.player.SetDestinationRect(this.layout.left)
 
     jsonRequest = CreateObject("roUrlTransfer")
-    jsonRequest.SetURL("http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/tvlive/ned3/ned3.isml/ned3.m3u8")
+    jsonRequest.SetURL("http://ida.omroep.nl/aapi/?stream=http://livestreams.omroep.nl/live/npo/tvlive/ned1/ned1.isml/ned1.m3u8")
     response = ParseJson(jsonRequest.GetToString())
 
     streamURL = response.stream

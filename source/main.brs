@@ -155,6 +155,7 @@ End Sub
 
 Sub PaintFullscreenCanvas()
     list = []
+    mode = CreateObject("roDeviceInfo").GetDisplayMode()
     if m.progress < 100
         color = "#000000" 'opaque black
         list.Push({
@@ -164,37 +165,72 @@ Sub PaintFullscreenCanvas()
         })
     else if m.overlay
         color = "#00000000" 'transparent black
-        list.Push({
-            url: "pkg:/images/header_overlay.png"
-            TargetRect: { x: 0, y: 0, w: 1280, h: 122 }
-        })
-        list.Push({
-            url: "pkg:/images/logo_channel.png"
-            TargetRect: { x: 26, y: 18, w: 89, h: 89 }
-        })
-        list.Push({
-            Text: "Nu"
-            TextAttrs: { font: "medium", halign: "left", valign: "center", color: m.textcolor }
-            TargetRect: { x: 153, y: 0, w: 50, h: 122 }
-        })
-        list.Push({
-            Text: "NOS Journaal"
-            TextAttrs: { font: "medium", halign: "left", valign: "center", color: m.alttextcolor }
-            TargetRect: { x: 193, y: 0, w: 954, h: 122 }
-        })
-        if m.paused
-            color = "#80000000" 'semi-transparent black
+        if mode = "720p"
+            list.Push({
+                url: "pkg:/images/header_overlay.png"
+                TargetRect: { x: 0, y: 0, w: 1280, h: 122 }
+            })
+            list.Push({
+                url: "pkg:/images/logo_channel.png"
+                TargetRect: { x: 26, y: 18, w: 89, h: 89 }
+            })
+            list.Push({
+                Text: "Nu"
+                TextAttrs: { font: "medium", halign: "left", valign: "center", color: m.textcolor }
+                TargetRect: { x: 153, y: 0, w: 50, h: 122 }
+            })
+            list.Push({
+                Text: "NOS Journaal"
+                TextAttrs: { font: "medium", halign: "left", valign: "center", color: m.alttextcolor }
+                TargetRect: { x: 193, y: 0, w: 954, h: 122 }
+            })
+            if m.paused
+                color = "#80000000" 'semi-transparent black
+                list.Push({
+                    url: "pkg:/images/pause_icon_large.png"
+                    TargetRect: { x: 580, y: 300, w: 120, h: 120 }
+                })
+            end if
+        else
+            list.Push({
+                url: "pkg:/images/header_overlay.png"
+                TargetRect: { x: 0, y: 0, w: 720, h: 81 }
+            })
+            list.Push({
+                url: "pkg:/images/logo_channel.png"
+                TargetRect: { x: 17, y: 12, w: 58, h: 58 }
+            })
+            list.Push({
+                Text: "Nu"
+                TextAttrs: { font: "medium", halign: "left", valign: "center", color: m.textcolor }
+                TargetRect: { x: 101, y: 0, w: 30, h: 81 }
+            })
+            list.Push({
+                Text: "NOS Journaal"
+                TextAttrs: { font: "medium", halign: "left", valign: "center", color: m.alttextcolor }
+                TargetRect: { x: 131, y: 0, w: 589, h: 81 }
+            })
+            if m.paused
+                color = "#80000000" 'semi-transparent black
+                list.Push({
+                    url: "pkg:/images/pause_icon_large.png"
+                    TargetRect: { x: 325, y: 205, w: 70, h: 70 }
+                })
+            end if
+        end if
+    else if m.paused
+        color = "#80000000" 'semi-transparent black
+        if mode = "720p"
             list.Push({
                 url: "pkg:/images/pause_icon_large.png"
                 TargetRect: { x: 580, y: 300, w: 120, h: 120 }
             })
+        else
+            list.Push({
+                url: "pkg:/images/pause_icon_large.png"
+                TargetRect: { x: 325, y: 205, w: 70, h: 70 }
+            })
         end if
-    else if m.paused
-        color = "#80000000" 'semi-transparent black
-        list.Push({
-            url: "pkg:/images/pause_icon_large.png"
-            TargetRect: { x: 580, y: 300, w: 120, h: 120 }
-        })
     else
         color = "#00000000" 'fully transparent
     end if

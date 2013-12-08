@@ -260,6 +260,7 @@ End Sub
 
 Sub PaintFramedCanvas()
     list = []
+    mode = CreateObject("roDeviceInfo").GetDisplayMode()
     if m.progress < 100  'Video is aan het laden...
         list.Push({
             Color: "#80000000"
@@ -276,10 +277,17 @@ Sub PaintFramedCanvas()
                 TargetRect: m.layout.left
                 CompositionMode: "Source"
             })
-            list.Push({
-                url: "pkg:/images/pause_icon_small.png"
-                TargetRect: { x: 430, y: 341, w: 61, h: 61 }
-            })
+            if mode = "720p"
+                list.Push({
+                    url: "pkg:/images/pause_icon_small.png"
+                    TargetRect: { x: 430, y: 341, w: 61, h: 61 }
+                })
+            else
+                list.Push({
+                    url: "pkg:/images/pause_icon_small.png"
+                    TargetRect: { x: 230, y: 214, w: 40, h: 40 }
+                })
+            end if
         else if m.overlay
             list.Push({
                 Color: "#00000000"
@@ -293,66 +301,129 @@ Sub PaintFramedCanvas()
                 CompositionMode: "Source"
             })
         end if
-        list.Push({
-            Text: "Nu"
-            TargetRect: { x: 919, y: 271, w: 50, h: 35 }
-            TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
-        })
-        list.Push({
-            Text: "Lingo (TROS)"
-            TargetRect: { x: 981, y: 271, w: 210, h: 35 }
-            TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
-        })
-        list.Push({
-            Text: "19:27"
-            TargetRect: { x: 919, y: 306, w: 50, h: 35 }
-            TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
-        })
-        list.Push({
-            Text: "Een huis vol (NCRV)"
-            TargetRect: { x: 981, y: 306, w: 210, h: 35 }
-            TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
-        })
-        list.Push({
-            Text: "Nu"
-            TargetRect: { x: 919, y: 366, w: 50, h: 35 }
-            TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
-        })
-        list.Push({
-            Text: "Lingo (TROS)"
-            TargetRect: { x: 981, y: 366, w: 210, h: 35 }
-            TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
-        })
-        list.Push({
-            Text: "19:27"
-            TargetRect: { x: 919, y: 401, w: 50, h: 35 }
-            TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
-        })
-        list.Push({
-            Text: "Een huis vol (NCRV)"
-            TargetRect: { x: 981, y: 401, w: 210, h: 35 }
-            TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
-        })
-        list.Push({
-            Text: "Nu"
-            TargetRect: { x: 919, y: 461, w: 50, h: 35 }
-            TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
-        })
-        list.Push({
-            Text: "Lingo (TROS)"
-            TargetRect: { x: 981, y: 461, w: 210, h: 35 }
-            TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
-        })
-        list.Push({
-            Text: "19:27"
-            TargetRect: { x: 919, y: 496, w: 50, h: 35 }
-            TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
-        })
-        list.Push({
-            Text: "Een huis vol (NCRV)"
-            TargetRect: { x: 981, y: 496, w: 210, h: 35 }
-            TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
-        })
+        if mode = "720p"
+            list.Push({
+                Text: "Nu"
+                TargetRect: { x: 919, y: 271, w: 50, h: 35 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
+            })
+            list.Push({
+                Text: "Lingo (TROS)"
+                TargetRect: { x: 981, y: 271, w: 210, h: 35 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
+            })
+            list.Push({
+                Text: "19:27"
+                TargetRect: { x: 919, y: 306, w: 50, h: 35 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
+            })
+            list.Push({
+                Text: "Een huis vol (NCRV)"
+                TargetRect: { x: 981, y: 306, w: 210, h: 35 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
+            })
+            list.Push({
+                Text: "Nu"
+                TargetRect: { x: 919, y: 366, w: 50, h: 35 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
+            })
+            list.Push({
+                Text: "Lingo (TROS)"
+                TargetRect: { x: 981, y: 366, w: 210, h: 35 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
+            })
+            list.Push({
+                Text: "19:27"
+                TargetRect: { x: 919, y: 401, w: 50, h: 35 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
+            })
+            list.Push({
+                Text: "Een huis vol (NCRV)"
+                TargetRect: { x: 981, y: 401, w: 210, h: 35 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
+            })
+            list.Push({
+                Text: "Nu"
+                TargetRect: { x: 919, y: 461, w: 50, h: 35 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
+            })
+            list.Push({
+                Text: "Lingo (TROS)"
+                TargetRect: { x: 981, y: 461, w: 210, h: 35 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
+            })
+            list.Push({
+                Text: "19:27"
+                TargetRect: { x: 919, y: 496, w: 50, h: 35 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
+            })
+            list.Push({
+                Text: "Een huis vol (NCRV)"
+                TargetRect: { x: 981, y: 496, w: 210, h: 35 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
+            })
+        'else
+            list.Push({
+                Text: "Nu"
+                TargetRect: { x: 476, y: 271, w: 50, h: 35 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
+            })
+            list.Push({
+                Text: "Lingo (TROS)"
+                TargetRect: { x: 515, y: 271, w: 210, h: 35 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
+            })
+            list.Push({
+                Text: "19:27"
+                TargetRect: { x: 476, y: 306, w: 50, h: 35 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
+            })
+            list.Push({
+                Text: "Een huis vol (NCRV)"
+                TargetRect: { x: 515, y: 306, w: 210, h: 35 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
+            })
+            list.Push({
+                Text: "Nu"
+                TargetRect: { x: 476, y: 366, w: 50, h: 35 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
+            })
+            list.Push({
+                Text: "Lingo (TROS)"
+                TargetRect: { x: 515, y: 366, w: 210, h: 35 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
+            })
+            list.Push({
+                Text: "19:27"
+                TargetRect: { x: 476, y: 401, w: 50, h: 35 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
+            })
+            list.Push({
+                Text: "Een huis vol (NCRV)"
+                TargetRect: { x: 515, y: 401, w: 210, h: 35 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
+            })
+            list.Push({
+                Text: "Nu"
+                TargetRect: { x: 476, y: 461, w: 50, h: 35 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
+            })
+            list.Push({
+                Text: "Lingo (TROS)"
+                TargetRect: { x: 515, y: 461, w: 210, h: 35 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
+            })
+            list.Push({
+                Text: "19:27"
+                TargetRect: { x: 476, y: 496, w: 50, h: 35 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
+            })
+            list.Push({
+                Text: "Een huis vol (NCRV)"
+                TargetRect: { x: 515, y: 496, w: 210, h: 35 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
+            })
+        end if   
     end if
     m.canvas.SetLayer(1, list)
 End Sub

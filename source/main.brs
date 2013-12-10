@@ -362,7 +362,7 @@ Sub PaintFramedCanvas()
                 TargetRect: { x: 981, y: 496, w: 210, h: 35 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
             })
-        'else
+        else
             list.Push({
                 Text: "Nu"
                 TargetRect: { x: 476, y: 271, w: 50, h: 35 }
@@ -381,46 +381,6 @@ Sub PaintFramedCanvas()
             list.Push({
                 Text: "Een huis vol (NCRV)"
                 TargetRect: { x: 515, y: 306, w: 210, h: 35 }
-                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
-            })
-            list.Push({
-                Text: "Nu"
-                TargetRect: { x: 476, y: 366, w: 50, h: 35 }
-                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
-            })
-            list.Push({
-                Text: "Lingo (TROS)"
-                TargetRect: { x: 515, y: 366, w: 210, h: 35 }
-                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
-            })
-            list.Push({
-                Text: "19:27"
-                TargetRect: { x: 476, y: 401, w: 50, h: 35 }
-                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
-            })
-            list.Push({
-                Text: "Een huis vol (NCRV)"
-                TargetRect: { x: 515, y: 401, w: 210, h: 35 }
-                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
-            })
-            list.Push({
-                Text: "Nu"
-                TargetRect: { x: 476, y: 461, w: 50, h: 35 }
-                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
-            })
-            list.Push({
-                Text: "Lingo (TROS)"
-                TargetRect: { x: 515, y: 461, w: 210, h: 35 }
-                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
-            })
-            list.Push({
-                Text: "19:27"
-                TargetRect: { x: 476, y: 496, w: 50, h: 35 }
-                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
-            })
-            list.Push({
-                Text: "Een huis vol (NCRV)"
-                TargetRect: { x: 515, y: 496, w: 210, h: 35 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
             })
         end if   

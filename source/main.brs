@@ -154,6 +154,12 @@ Sub SetupFullscreenCanvas()
 End Sub
 
 Sub PaintFullscreenCanvas()
+
+    jsonRequest = CreateObject("roUrlTransfer")
+    jsonRequest.SetURL("http://nltvnow.herokuapp.com/now")
+    response = ParseJson(jsonRequest.GetToString())
+    title = response.NED1.now.title
+
     list = []
     mode = CreateObject("roDeviceInfo").GetDisplayMode()
     if m.progress < 100
@@ -180,7 +186,7 @@ Sub PaintFullscreenCanvas()
                 TargetRect: { x: 153, y: 0, w: 50, h: 122 }
             })
             list.Push({
-                Text: "NOS Journaal"
+                Text: title
                 TextAttrs: { font: "medium", halign: "left", valign: "center", color: m.alttextcolor }
                 TargetRect: { x: 193, y: 0, w: 954, h: 122 }
             })
@@ -206,7 +212,7 @@ Sub PaintFullscreenCanvas()
                 TargetRect: { x: 101, y: 0, w: 30, h: 81 }
             })
             list.Push({
-                Text: "NOS Journaal"
+                Text: title
                 TextAttrs: { font: "medium", halign: "left", valign: "center", color: m.alttextcolor }
                 TargetRect: { x: 131, y: 0, w: 589, h: 81 }
             })
@@ -259,6 +265,10 @@ Sub SetupFramedCanvas()
 End Sub
 
 Sub PaintFramedCanvas()
+    jsonRequest = CreateObject("roUrlTransfer")
+    jsonRequest.SetURL("http://nltvnow.herokuapp.com/now")
+    guide = ParseJson(jsonRequest.GetToString())
+
     list = []
     mode = CreateObject("roDeviceInfo").GetDisplayMode()
     if m.progress < 100  'Video is aan het laden...
@@ -308,17 +318,17 @@ Sub PaintFramedCanvas()
                 TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
             })
             list.Push({
-                Text: "Lingo (TROS)"
+                Text: guide.NED1.now.title
                 TargetRect: { x: 981, y: 271, w: 210, h: 35 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
             })
             list.Push({
-                Text: "19:27"
+                Text: guide.NED1.next.start_time
                 TargetRect: { x: 919, y: 306, w: 50, h: 35 }
                 TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
             })
             list.Push({
-                Text: "Een huis vol (NCRV)"
+                Text: guide.NED1.next.title
                 TargetRect: { x: 981, y: 306, w: 210, h: 35 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
             })
@@ -328,17 +338,17 @@ Sub PaintFramedCanvas()
                 TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
             })
             list.Push({
-                Text: "Lingo (TROS)"
+                Text: guide.NED2.now.title
                 TargetRect: { x: 981, y: 366, w: 210, h: 35 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
             })
             list.Push({
-                Text: "19:27"
+                Text: guide.NED2.next.start_time
                 TargetRect: { x: 919, y: 401, w: 50, h: 35 }
                 TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
             })
             list.Push({
-                Text: "Een huis vol (NCRV)"
+                Text: guide.NED2.next.title
                 TargetRect: { x: 981, y: 401, w: 210, h: 35 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
             })
@@ -348,17 +358,17 @@ Sub PaintFramedCanvas()
                 TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
             })
             list.Push({
-                Text: "Lingo (TROS)"
+                Text: guide.NED3.now.title
                 TargetRect: { x: 981, y: 461, w: 210, h: 35 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
             })
             list.Push({
-                Text: "19:27"
+                Text: guide.NED3.next.start_time
                 TargetRect: { x: 919, y: 496, w: 50, h: 35 }
                 TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
             })
             list.Push({
-                Text: "Een huis vol (NCRV)"
+                Text: guide.NED3.next.title
                 TargetRect: { x: 981, y: 496, w: 210, h: 35 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
             })
@@ -369,21 +379,21 @@ Sub PaintFramedCanvas()
                 TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
             })
             list.Push({
-                Text: "Lingo (TROS)"
+                Text: guide.NED1.now.title
                 TargetRect: { x: 515, y: 271, w: 210, h: 35 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
             })
             list.Push({
-                Text: "19:27"
+                Text: guide.NED1.next.start_time
                 TargetRect: { x: 476, y: 306, w: 50, h: 35 }
                 TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
             })
             list.Push({
-                Text: "Een huis vol (NCRV)"
+                Text: guide.NED1.next.title
                 TargetRect: { x: 515, y: 306, w: 210, h: 35 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
             })
-        end if   
+        end if
     end if
     m.canvas.SetLayer(1, list)
 End Sub

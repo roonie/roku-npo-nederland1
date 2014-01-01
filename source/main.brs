@@ -48,7 +48,7 @@ Sub Setup() As Object
         this.layout = {
             full:   this.canvas.GetCanvasRect()
             top:    { x:   0, y:   0, w:1280, h: 130 }
-            left:   { x: 150, y: 197, w: 622, h: 350 }
+            left:   { x: 150, y: 190, w: 622, h: 350 }
             right:  { x: 800, y: 227, w: 350, h: 291 }
             bottom: { x: 249, y: 630, w: 780, h: 100 }
         }
@@ -290,7 +290,7 @@ Sub PaintFramedCanvas()
             if mode = "720p"
                 list.Push({
                     url: "pkg:/images/pause_icon_small.png"
-                    TargetRect: { x: 430, y: 341, w: 61, h: 61 }
+                    TargetRect: { x: 430, y: 334, w: 61, h: 61 }
                 })
             else
                 list.Push({
@@ -314,83 +314,64 @@ Sub PaintFramedCanvas()
         if mode = "720p"
             list.Push({
                 Text: "Nu"
-                TargetRect: { x: 919, y: 271, w: 50, h: 35 }
-                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
+                TargetRect: { x: 859, y: 200, w: 70, h: 80 }
+                TextAttrs: { font: "small", halign: "right", valign: "center", color: m.orange }
             })
             list.Push({
                 Text: guide.NED1.now.title
-                TargetRect: { x: 981, y: 271, w: 210, h: 35 }
-                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
+                TargetRect: { x: 951, y: 200, w: 250, h: 80 }
+                TextAttrs: { font: "small", halign: "left", valign: "center", color: m.textcolor }
             })
             list.Push({
                 Text: guide.NED1.next.start_time
-                TargetRect: { x: 919, y: 306, w: 50, h: 35 }
-                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
+                TargetRect: { x: 859, y: 300, w: 70, h: 80 }
+                TextAttrs: { font: "small", halign: "right", valign: "center", color: m.gray }
             })
             list.Push({
                 Text: guide.NED1.next.title
-                TargetRect: { x: 981, y: 306, w: 210, h: 35 }
-                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
-            })
-            list.Push({
-                Text: "Nu"
-                TargetRect: { x: 919, y: 366, w: 50, h: 35 }
-                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
-            })
-            list.Push({
-                Text: guide.NED2.now.title
-                TargetRect: { x: 981, y: 366, w: 210, h: 35 }
-                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
+                TargetRect: { x: 951, y: 300, w: 250, h: 80 }
+                TextAttrs: { font: "small", halign: "left", valign: "center", color: m.gray }
             })
             list.Push({
                 Text: guide.NED2.next.start_time
-                TargetRect: { x: 919, y: 401, w: 50, h: 35 }
-                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
+                TargetRect: { x: 859, y: 400, w: 70, h: 80 }
+                TextAttrs: { font: "small", halign: "right", valign: "center", color: m.gray }
             })
             list.Push({
                 Text: guide.NED2.next.title
-                TargetRect: { x: 981, y: 401, w: 210, h: 35 }
-                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
-            })
-            list.Push({
-                Text: "Nu"
-                TargetRect: { x: 919, y: 461, w: 50, h: 35 }
-                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
-            })
-            list.Push({
-                Text: guide.NED3.now.title
-                TargetRect: { x: 981, y: 461, w: 210, h: 35 }
-                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
-            })
-            list.Push({
-                Text: guide.NED3.next.start_time
-                TargetRect: { x: 919, y: 496, w: 50, h: 35 }
-                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
-            })
-            list.Push({
-                Text: guide.NED3.next.title
-                TargetRect: { x: 981, y: 496, w: 210, h: 35 }
-                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
+                TargetRect: { x: 951, y: 400, w: 250, h: 80 }
+                TextAttrs: { font: "small", halign: "left", valign: "center", color: m.gray }
             })
         else
             list.Push({
                 Text: "Nu"
-                TargetRect: { x: 476, y: 271, w: 50, h: 35 }
-                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.textcolor }
+                TargetRect: { x: 443, y: 132, w: 50, h: 55 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.orange }
             })
             list.Push({
                 Text: guide.NED1.now.title
-                TargetRect: { x: 515, y: 271, w: 210, h: 35 }
-                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.orange }
+                TargetRect: { x: 499, y: 132, w: 193, h: 55 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.textcolor }
             })
             list.Push({
                 Text: guide.NED1.next.start_time
-                TargetRect: { x: 476, y: 306, w: 50, h: 35 }
+                TargetRect: { x: 443, y: 193, w: 50, h: 55 }
                 TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
             })
             list.Push({
-                Text: guide.NED1.next.title
-                TargetRect: { x: 515, y: 306, w: 210, h: 35 }
+                'Text: guide.NED1.next.title
+                Text: "lorem ipsum doler sit amet lorem ipsum doler sit amet lorem "
+                TargetRect: { x: 499, y: 193, w: 193, h: 55 }
+                TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
+            })
+            list.Push({
+                Text: guide.NED2.next.start_time
+                TargetRect: { x: 443, y: 254, w: 50, h: 55 }
+                TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
+            })
+            list.Push({
+                Text: guide.NED2.next.title
+                TargetRect: { x: 499, y: 254, w: 193, h: 55 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
             })
         end if

@@ -158,7 +158,7 @@ Sub PaintFullscreenCanvas()
     jsonRequest = CreateObject("roUrlTransfer")
     jsonRequest.SetURL("http://nltvnow.herokuapp.com/now")
     response = ParseJson(jsonRequest.GetToString())
-    title = response.NED1.now.title
+    title = response.NED1[0].title
 
     list = []
     mode = CreateObject("roDeviceInfo").GetDisplayMode()
@@ -318,27 +318,27 @@ Sub PaintFramedCanvas()
                 TextAttrs: { font: "small", halign: "right", valign: "center", color: m.orange }
             })
             list.Push({
-                Text: guide.NED1.now.title
+                Text: guide.NED1[0].title
                 TargetRect: { x: 951, y: 200, w: 250, h: 80 }
                 TextAttrs: { font: "small", halign: "left", valign: "center", color: m.textcolor }
             })
             list.Push({
-                Text: guide.NED1.next.start_time
+                Text: guide.NED1[1].start_time
                 TargetRect: { x: 859, y: 300, w: 70, h: 80 }
                 TextAttrs: { font: "small", halign: "right", valign: "center", color: m.gray }
             })
             list.Push({
-                Text: guide.NED1.next.title
+                Text: guide.NED1[1].title
                 TargetRect: { x: 951, y: 300, w: 250, h: 80 }
                 TextAttrs: { font: "small", halign: "left", valign: "center", color: m.gray }
             })
             list.Push({
-                Text: guide.NED2.next.start_time
+                Text: guide.NED1[2].start_time
                 TargetRect: { x: 859, y: 400, w: 70, h: 80 }
                 TextAttrs: { font: "small", halign: "right", valign: "center", color: m.gray }
             })
             list.Push({
-                Text: guide.NED2.next.title
+                Text: guide.NED1[2].title
                 TargetRect: { x: 951, y: 400, w: 250, h: 80 }
                 TextAttrs: { font: "small", halign: "left", valign: "center", color: m.gray }
             })
@@ -349,28 +349,27 @@ Sub PaintFramedCanvas()
                 TextAttrs: { font: "s", halign: "right", valign: "center", color: m.orange }
             })
             list.Push({
-                Text: guide.NED1.now.title
+                Text: guide.NED1[0].title
                 TargetRect: { x: 499, y: 132, w: 193, h: 55 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.textcolor }
             })
             list.Push({
-                Text: guide.NED1.next.start_time
+                Text: guide.NED1[1].start_time
                 TargetRect: { x: 443, y: 193, w: 50, h: 55 }
                 TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
             })
             list.Push({
-                'Text: guide.NED1.next.title
-                Text: "lorem ipsum doler sit amet lorem ipsum doler sit amet lorem "
+                Text: guide.NED1[1].title
                 TargetRect: { x: 499, y: 193, w: 193, h: 55 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
             })
             list.Push({
-                Text: guide.NED2.next.start_time
+                Text: guide.NED1[2].start_time
                 TargetRect: { x: 443, y: 254, w: 50, h: 55 }
                 TextAttrs: { font: "s", halign: "right", valign: "center", color: m.gray }
             })
             list.Push({
-                Text: guide.NED2.next.title
+                Text: guide.NED1[2].title
                 TargetRect: { x: 499, y: 254, w: 193, h: 55 }
                 TextAttrs: { font: "s", halign: "left", valign: "center", color: m.gray }
             })
